@@ -33,6 +33,16 @@ const Herosection = () => {
                 <h4>165</h4>
                 <p>EST CALORIES</p>
             </div>
+
+            <div className="inside2">
+            <box-icon name='run'></box-icon>
+            <h3>4,95 <span className="span">km/h</span></h3>
+            </div>
+
+            <div className="inside3">
+              <h3>500+</h3>
+              <p>Free Workout Videos</p>
+            </div>
            </div>
             
         </div>
