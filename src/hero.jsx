@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import heroImg from "./images/workout.svg";
 import nike from "./images/nike.svg";
 import nike1 from "./images/logo1.svg";
@@ -31,8 +31,30 @@ const Herosection = () => {
       { opacity:0, y: -100 },
       {opacity: 1, y:0, ease: "bounce", duration: 1.7 }
     );
+
+ 
   }, []);
 
+  const [time, setTime] = useState("00:00:00");
+
+  const updateTime = () => {
+    const now = new Date();
+    const hours = now.getUTCHours().toString().padStart(2, '0');
+    const minutes = now.getUTCMinutes().toString().padStart(2, '0');
+    const seconds =now.getSeconds().toString().padStart(2, '0')
+    const newTime = `${hours}:${minutes}:${seconds}`;
+    
+  if(newTime !== time){
+    setTime(newTime)
+  }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(updateTime, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+ 
+  updateTime();
   return (
     <div className="hero-section">
       <div className="hero-container">
@@ -54,7 +76,7 @@ const Herosection = () => {
           <img className="work-out" src={heroImg} alt="" />
           <div className="inside-text">
             <div className="inside">
-              <h3>38:14</h3>
+              <h3>{time}</h3>
               <p>TIME</p>
             </div>
 
