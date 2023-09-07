@@ -35,14 +35,23 @@ const Herosection = () => {
  
   }, []);
 
-  const [time, setTime] = useState("00:00:00");
+  const [time, setTime] = useState("00:00:00 AM");
 
   const updateTime = () => {
     const now = new Date();
-    const hours = now.getUTCHours().toString().padStart(2, '0');
+    let hours = now.getHours()
+    let AmPM = "AM"
+    if(hours>=12){
+      AmPM="PM"
+    }
+
+    if(hours>12){
+     hours =-12
+    }
+   hours = hours.toString().padStart(2, '0');
     const minutes = now.getUTCMinutes().toString().padStart(2, '0');
     const seconds =now.getSeconds().toString().padStart(2, '0')
-    const newTime = `${hours}:${minutes}:${seconds}`;
+    const newTime = `${hours}:${minutes}:${seconds} ${AmPM}`;
     
   if(newTime !== time){
     setTime(newTime)
